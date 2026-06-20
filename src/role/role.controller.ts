@@ -11,11 +11,13 @@ import {
   Query,
 } from '@nestjs/common';
 import { CreateRoleRequestDto, UpdateRoleRequestDto } from './role.dto';
+import { PaginationQuery } from 'src/common/common.dto';
 
 @Controller('role')
 export class RoleController {
   @Get()
-  getAllRoles(@Query('page') page = 1, @Query('limit') limit = 10) {
+  getAllRoles(@Query() paginationQuery: PaginationQuery) {
+    const { page, limit } = paginationQuery;
     return `This action returns all roles. Limit ${limit}, page: ${page}`;
   }
 
